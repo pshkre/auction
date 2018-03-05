@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="utf-8">{% load names %}
+        <title>{% if page_name %}{{ page_name }} - {% endif %}{% site_var 'site_name_brief' %}</title>
+        {% include '_layout/header.html' %}
+        {% block additional_head %}{% endblock %}
+    </head>
+    <body>
+        {% include '_layout/navbar.html' %}
+        <div class="container">
+            {% block additional_info %}{% endblock %}
+            
+            {% comment 'head' %}{% endcomment %}<div class="row">
+                <h1>{% block h1 %}
+                    {% if page_name %}{{ page_name }}{% else %}
+                        {% templatetag openvariable %}PAGE_NAME{% templatetag closevariable %} not defined
+                    {% endif %}{% endblock %}</h1>
+
+                <ol class="breadcrumb">
+                    {% block breadcrumb %}<li><a href="{% url 'home' %}">{% nav_name 'home' %}</a></li>{% endblock %}
+                </ol>
+            </div>
+            
+            {% block content %}
+                <div class="row">{% lorem 20 p %}</div>
+            {% endblock %}
+
+        </div>
+        
+        {% include '_layout/footer.html' %}
+    </body>
+</html>
