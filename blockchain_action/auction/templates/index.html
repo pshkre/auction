@@ -1,5 +1,6 @@
 {% extends '_layout/base.html' %}
 {% load names %}
+{% load static %}
 
 {% block h1 %}{% site_var 'site_name' %}{% endblock %}
 
@@ -9,12 +10,13 @@
 
 {% block content %}
 
+  <img src="{% static 'img/bid.jpg' %}" width="1800px;"  class="img-responsive center-block">
   <body>
-
-    <h1>參與競標吧!</h1>
-    <button  class="btn btn-warning" >觀看目前標案</button>
-    <button  class="btn btn-warning" onclick="location.href={% url 'buildAuction:create_contract' %}" id="a">新增標案</button>
-    
+    <div class="caption post-content">  
+    <h1 style="font-size: 90px">參與競標吧!</h1><br/><br/>  
+    <button  class="btn btn-warning" style="font-size: 30px">觀看目前標案</button>
+    <button  class="btn btn-warning" onclick="location.href={% url 'buildAuction:create_contract' %}" style="font-size: 30px">新增標案</button>
+    </div>
   </body>
 
 {% endblock %}

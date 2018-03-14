@@ -32,13 +32,14 @@ body {
 }
 
 body,input,button,select,textarea{
-    font-family: "Helvetica Neue", Helvetica, Arial, "文泉驛微米黑", "微软雅黑", "メイリオ", "맑은 고딕", sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, "æ–‡æ³‰é©›å¾®ç±³é»‘", "å¾®è½¯é›…é»‘", "ãƒ¡ã‚¤ãƒªã‚ª", "ë§‘ì€ ê³ ë”•", sans-serif;
     font-size:150%;
 }
 
-h1,h2,h3,h4,h5,h6{  
-    font-family: "文泉驛微米黑", Helvetica, Arial, sans-serif;  
+label,ol,h1,h2,h3,h4,h5,h6{  
+    font-family: "Microsoft JhengHei","æ–‡æ³‰é©›å¾®ç±³é»‘", Helvetica, Arial, sans-serif;  
 }
+
 h2,h4{
     line-height:22pt;
 }
@@ -53,4 +54,21 @@ h2,h4{
 }
 .gray{
   color: gray;
+}
+.post-content {
+    top:250px;
+    left:180px;
+    min-width: 500px;
+    min-height: 500px; 
+    position: absolute;
+    color: #ffffff; 
+}
+.btn{
+    font-family: "Microsoft JhengHei",Arial, sans-serif;  
+}
+.btn-container-right {
+ direction: rtl;
+ * {
+ direction: ltr;
+ }
 }
