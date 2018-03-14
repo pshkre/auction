@@ -1,0 +1,6 @@
+{% extends '_layout/base.html' %}
+{% load names %}
+
+{% block breadcrumb %}{{ block.super }}
+<li><a href="{% url 'buildAuction:create_contract' %}">{% nav_name 'buildAuction' %}</a></li>
+{% endblock %}

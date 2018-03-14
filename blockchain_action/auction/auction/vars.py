@@ -1,8 +1,11 @@
 SITE_VARIABLES = {
-    'site_name' : '拍賣',
-    'site_name_brief' : 'Auction',
+    'site_name' : '競標',
+    'site_name_brief' : 'Bidding',
 
     'home' : '主平台',
+    
+    # buildAuction
+    'buildAuction' : '創造標案',
     }
 """
     # article
