@@ -20,5 +20,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', TemplateView.as_view(template_name="index.html"), name='home'),
     url(r'^buildAuction/', include('buildAuction.urls', namespace='buildAuction')),
-	url(r'^register/', include('register.urls', namespace='register')),
+	 url(r'^register/', include('register.urls', namespace='register')),
+    url(r'^login/', include('login.urls', namespace='login')),
 ]

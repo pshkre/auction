@@ -55,12 +55,14 @@ h2,h4{
 .gray{
   color: gray;
 }
-.post-content {
-    top:250px;
-    left:180px;
-    min-width: 500px;
-    min-height: 500px; 
+.container {
+    position: relative;
+    
+}
+.top-left {
     position: absolute;
+    top: 30px;
+    left: 50px;
     color: #ffffff; 
 }
 .btn{

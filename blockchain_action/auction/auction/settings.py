@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'auction',
     'buildAuction',
 	'register',
+    'login',
 )
 
 MIDDLEWARE_CLASSES = (

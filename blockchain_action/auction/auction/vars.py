@@ -8,6 +8,7 @@ SITE_VARIABLES = {
     'buildAuction' : '創造標案',
 	
 	'register' : '註冊',
+    'login' : '登入',
     }
 """
     # article
