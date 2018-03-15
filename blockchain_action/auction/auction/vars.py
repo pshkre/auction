@@ -6,6 +6,8 @@ SITE_VARIABLES = {
     
     # buildAuction
     'buildAuction' : '創造標案',
+	
+	'register' : '註冊',
     }
 """
     # article

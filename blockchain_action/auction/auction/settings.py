@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'auction',
     'buildAuction',
+	'register',
 )
 
 MIDDLEWARE_CLASSES = (
