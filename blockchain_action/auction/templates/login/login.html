@@ -1,0 +1,56 @@
+{% extends 'login/_base.html' %}
+{% load names %}
+{% block h1 %}{% site_var 'site_name' %}{% endblock %}
+{% block breadcrumb %}{{ block.super }}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+  <body>
+  <script type="text/javascript" src="../static/js/web3.min.js"></script>
+  <script>
+    var account_passphrase = '05134560513456';
+    var Web3 = require('web3');
+    var web3 = new Web3(new Web3.providers.HttpProvider('http://140.113.72.25:8545'));
+	web3.eth.defaultAccount = '0x40863D35A4f86c05c389D771007D2524c8665044';
+	
+	function register() {
+	    web3.personal.unlockAccount(web3.eth.defaultAccount, account_passphrase, 300);
+  
+  
+		var market0312Contract = web3.eth.contract([{"constant":true,"inputs":[],"name":"userno","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"tokenlist","outputs":[{"name":"tokenname","type":"string"},{"name":"totalsupply","type":"uint256"},{"name":"tokenaddress","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_account","type":"string"},{"name":"_password","type":"string"},{"name":"_address","type":"address"}],"name":"register","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_account","type":"string"},{"name":"_password","type":"string"}],"name":"login","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_tokenname","type":"string"},{"name":"_totalsupply","type":"uint256"},{"name":"_tokenaddress","type":"address"}],"name":"addtoken","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"tokenno","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"userlist","outputs":[{"name":"account","type":"string"},{"name":"password","type":"string"},{"name":"useraddress","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_account","type":"string"}],"name":"checkuser","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]).at('0xf909ee9d8472af6b34761f5fd4402c7a3de810c7');
+		
+		 var username = document.getElementById('username').value;
+		 var password = document.getElementById('password').value;
+
+		 var useraddress = market0312Contract.login.call(username,password);
+	}
+    
+  
+  
+  
+  
+  </script>
+  <h1>Login</h1>
+    <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">username</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="username" placeholder="Type the username" size="60"></input>
+            </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">password</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="password" placeholder="Type the password" size="60"></input>
+            </div>
+    </div>
+
+    <div>
+    <button  class="btn btn-warning btn btn-primary pull-right btn-sm " style="font-size: 25px" onclick="register()">Login!</button>
+    </div>
+    
+    <body>
+	{% endblock %}

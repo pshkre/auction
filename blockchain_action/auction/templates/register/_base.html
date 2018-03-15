@@ -1,0 +1,6 @@
+{% extends '_layout/base.html' %}
+{% load names %}
+
+{% block breadcrumb %}{{ block.super }}
+<li><a href="{% url 'register:register' %}">{% nav_name 'register' %}</a></li>
+{% endblock %}
