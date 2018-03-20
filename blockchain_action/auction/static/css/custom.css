@@ -36,7 +36,7 @@ body,input,button,select,textarea{
     font-size:150%;
 }
 
-label,ol,h1,h2,h3,h4,h5,h6{  
+dl,label,ol,h1,h2,h3,h4,h5,h6{  
     font-family: "Microsoft JhengHei","æ–‡æ³‰é©›å¾®ç±³é»‘", Helvetica, Arial, sans-serif;  
 }
 
@@ -55,16 +55,27 @@ h2,h4{
 .gray{
   color: gray;
 }
-.container {
+.tainer {
     position: relative;
     
 }
-.top-left {
+.topleft {
     position: absolute;
     top: 30px;
     left: 50px;
     color: #ffffff; 
 }
+
+dt{
+    height: 40px;
+    font-size: 25px;
+}
+
+dd{
+    height: 40px;
+    font-size: 23px;
+}
+
 .btn{
     font-family: "Microsoft JhengHei",Arial, sans-serif;  
 }
