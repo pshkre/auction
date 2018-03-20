@@ -9,10 +9,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-  <img src="{% static 'img/bid.jpg' %}" style="width:100%;" alt="Norway">
+<div class="tainer">
+  <img src="{% static 'img/bid.jpg' %}" style="width:100%;" alt=" ">
   <body>
-    <div class="top-left">  
+    <div class="topleft">  
     <h1 style="font-size: 90px">參與競標吧!</h1><br/><br/>  
     <button  class="btn btn-warning" style="font-size: 30px">觀看目前標案</button>
     <button  class="btn btn-warning" onclick="location.href={% url 'buildAuction:create_contract' %}" style="font-size: 30px">新增標案</button>
