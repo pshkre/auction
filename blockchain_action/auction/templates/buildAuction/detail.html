@@ -1,0 +1,57 @@
+{% extends 'buildAuction/_base.html' %}
+{% load names %}
+{% block h1 %}{% site_var 'site_name' %}{% endblock %}
+{% block breadcrumb %}{{ block.super }}
+
+{% endblock %}
+
+{% block content %}
+<script>
+
+var _biddingtime = window.opener.document.getElementById("biddingTime").value;
+var _revealTime = window.opener.document.getElementById('revealTime').value ;
+var _beneficiary = window.opener.document.getElementById('beneficiary').value ;
+var _administrator = window.opener.document.getElementById('administrator').value ;
+var _auctionholder = window.opener.document.getElementById('auctionholder').value ;
+var _reservePrice = window.opener.document.getElementById('reservePrice').value ;
+
+document.write('<h1>Your bidding contract</h1></br></br><blockquote><dl class="row">\
+<dt class="col-sm-3">拍賣期間</dt><dd class="col-sm-9">'+_biddingtime+'</dd>\
+<dt class="col-sm-3">結束期間</dt><dd class="col-sm-9">'+_revealTime+'</dd>\
+<dt class="col-sm-3">受益人</dt><dd class="col-sm-9">'+_beneficiary+'</dd>\
+<dt class="col-sm-3">管理者</dt><dd class="col-sm-9">'+_administrator+'</dd>\
+<dt class="col-sm-3">競標主持人</dt><dd class="col-sm-9">'+_auctionholder+'</dd>\
+<dt class="col-sm-3">底價</dt><dd class="col-sm-9">'+_reservePrice+'</dd></dl></blockquote>');
+
+</script>
+<!--
+  <body>
+ 
+    <h1>Create bidding contract</h1>
+    <div class="form-group row">
+        <label for="inputPassword" class="col-md-3">拍賣期間</label>
+            <div class="col-md-6">'+_biddingTime+'</div>
+    </div>
+    <div class="form-group row">
+        <label for="inputPassword" class="col-md-3">結束期間</label>
+            <div class="col-md-6">'+_revealTime+'</div>
+    </div>
+    <div class="form-group row">
+        <label for="inputPassword" class="col-md-3">受益人</label>
+            <div class="col-md-6">'+_beneficiary+'</div>
+    </div>
+    <div class="form-group row">
+        <label for="inputPassword" class="col-md-3">管理者</label>
+            <div class="col-md-6">'+_administrator+'</div>
+    </div>
+    <div class="form-group row">
+        <label for="inputPassword" class="col-md-3">競標主持人</label>
+            <div class="col-md-6">'+_auctionholder+'</div>
+    </div>
+    <div class="form-group row">
+        <label for="inputPassword" class="col-md-3">底價</label>
+            <div class="col-md-6">'+_reservePrice+'</div>
+    </div>
+  </body>
+-->
+{% endblock %}
