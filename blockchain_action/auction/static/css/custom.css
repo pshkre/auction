@@ -36,7 +36,7 @@ body,input,button,select,textarea{
     font-size:150%;
 }
 
-dl,label,ol,h1,h2,h3,h4,h5,h6{  
+a,dl,label,ol,h1,h2,h3,h4,h5,h6{  
     font-family: "Microsoft JhengHei","æ–‡æ³‰é©›å¾®ç±³é»‘", Helvetica, Arial, sans-serif;  
 }
 
@@ -84,4 +84,8 @@ dd{
  * {
  direction: ltr;
  }
+}
+dropdown col-sm-2{
+    border:2px none;
+    
 }
