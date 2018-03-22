@@ -4,10 +4,9 @@ SITE_VARIABLES = {
 
     'home' : '主平台',
     
-    # buildAuction
     'buildAuction' : '創造標案',
-	
-	'register' : '註冊',
+    'administration' : '管理',
+    'register' : '註冊',
     'login' : '登入',
     }
 """
