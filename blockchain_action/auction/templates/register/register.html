@@ -9,19 +9,20 @@
 
 
 
-  <body>
-  <script type="text/javascript" src="../static/js/web3.min.js"></script>
-  <script>
-    var account_passphrase = '05134560513456';
+<body>
+<script type="text/javascript" src="../static/js/web3.min.js"></script>
+<script>
+    
     var Web3 = require('web3');
     var web3 = new Web3(new Web3.providers.HttpProvider('http://140.113.72.25:8545'));
-	web3.eth.defaultAccount = '0x40863D35A4f86c05c389D771007D2524c8665044';
 	
 	function register() {
+		web3.eth.defaultAccount = '0x40863D35A4f86c05c389D771007D2524c8665044';
+		var account_passphrase = '05134560513456';
 	    web3.personal.unlockAccount(web3.eth.defaultAccount, account_passphrase, 300);
   
   
-		var market0312Contract = web3.eth.contract([{"constant":true,"inputs":[],"name":"userno","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"tokenlist","outputs":[{"name":"tokenname","type":"string"},{"name":"totalsupply","type":"uint256"},{"name":"tokenaddress","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_account","type":"string"},{"name":"_password","type":"string"},{"name":"_address","type":"address"}],"name":"register","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_account","type":"string"},{"name":"_password","type":"string"}],"name":"login","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_tokenname","type":"string"},{"name":"_totalsupply","type":"uint256"},{"name":"_tokenaddress","type":"address"}],"name":"addtoken","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"tokenno","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"userlist","outputs":[{"name":"account","type":"string"},{"name":"password","type":"string"},{"name":"useraddress","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_account","type":"string"}],"name":"checkuser","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]).at('0xf909ee9d8472af6b34761f5fd4402c7a3de810c7');
+		var market0312Contract = web3.eth.contract([{"constant":true,"inputs":[],"name":"userno","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"tokenlist","outputs":[{"name":"tokenname","type":"string"},{"name":"totalsupply","type":"uint256"},{"name":"tokenaddress","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_account","type":"string"},{"name":"_password","type":"string"},{"name":"_address","type":"address"}],"name":"register","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_account","type":"string"},{"name":"_password","type":"string"}],"name":"login","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_tokenname","type":"string"},{"name":"_totalsupply","type":"uint256"},{"name":"_tokenaddress","type":"address"}],"name":"addtoken","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"tokenno","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"userlist","outputs":[{"name":"account","type":"string"},{"name":"password","type":"string"},{"name":"useraddress","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_account","type":"string"}],"name":"checkuser","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]).at('0xebe05978756417F7A7551b36b33f761F356b77cb');
 		
 		var username = document.getElementById('username').value;
 		var password = document.getElementById('password').value;
@@ -35,13 +36,25 @@
 		else if(password == check_password)
 		{
 		    var useraddress = web3.personal.newAccount(password);//創立新錢包，取得新地址
+			
 		
-		    //註冊成功，尚無法加入userlist
+		    //註冊成功
 		    if(market0312Contract.register.call(username, password, useraddress) == true)
-			{
-		        console.log('useraddress'+useraddress);
-			    location.href = "http://127.0.0.1:8000/login/";//跳轉頁面的方法之一!!!!!
-		    }
+			{		
+				//位址為Mist中Market0319Contract契約位址
+		        market0312Contract.register.sendTransaction(username, password, useraddress, {from:'0x40863D35A4f86c05c389D771007D2524c8665044', gas:4000000}, function(error, result){
+				if(!error)
+				{
+					console.log('result:'+result);
+					console.log('useraddress:'+useraddress);
+					location.href = "http://127.0.0.1:8000/login";
+				}
+				else
+				{
+					console.log('error:'+error);
+				}
+			});
+			}
 		    //帳號名稱已用過
 		    else if(market0312Contract.register.call(username, password, useraddress) == false)
 			{
@@ -49,7 +62,7 @@
 		    }
 		}
 
-		 var useraddress = market0312Contract.login.call(username,password);
+		 
 	}
     
   
