@@ -41,7 +41,7 @@
 		    if(market0312Contract.register.call(username, password, useraddress) == true)
 			{		
 		        market0312Contract.register.sendTransaction(username, password, useraddress, {from:'0x710023E720374318213EcA9dC1ff9C21b92e056B', gas:4000000}, function(error, result){
-				console.log("userpassword:"+userpassword);
+				console.log("password:"+password);
 				if(!error)
 				{
 					console.log('result:'+result);
