@@ -12,21 +12,41 @@
   <body>
   <script type="text/javascript" src="../static/js/web3.min.js"></script>
   <script>
-    var account_passphrase = '05134560513456';
+    var account_passphrase = '0513456';
     var Web3 = require('web3');
     var web3 = new Web3(new Web3.providers.HttpProvider('http://140.113.72.25:8545'));
-	web3.eth.defaultAccount = '0x40863D35A4f86c05c389D771007D2524c8665044';
 	
-	function register() {
+	
+	function Sign_in() {
+	//假設Account 8是我們的Account
+		web3.eth.defaultAccount = '0x710023E720374318213EcA9dC1ff9C21b92e056B';
 	    web3.personal.unlockAccount(web3.eth.defaultAccount, account_passphrase, 300);
   
   
-		var market0312Contract = web3.eth.contract([{"constant":true,"inputs":[],"name":"userno","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"tokenlist","outputs":[{"name":"tokenname","type":"string"},{"name":"totalsupply","type":"uint256"},{"name":"tokenaddress","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_account","type":"string"},{"name":"_password","type":"string"},{"name":"_address","type":"address"}],"name":"register","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_account","type":"string"},{"name":"_password","type":"string"}],"name":"login","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_tokenname","type":"string"},{"name":"_totalsupply","type":"uint256"},{"name":"_tokenaddress","type":"address"}],"name":"addtoken","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"tokenno","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"userlist","outputs":[{"name":"account","type":"string"},{"name":"password","type":"string"},{"name":"useraddress","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_account","type":"string"}],"name":"checkuser","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]).at('0xf909ee9d8472af6b34761f5fd4402c7a3de810c7');
+		var market0312Contract = web3.eth.contract([ { "constant": false, "inputs": [ { "name": "_account", "type": "string" } ], "name": "checkuser", "outputs": [ { "name": "", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_account", "type": "string" }, { "name": "_password", "type": "string" } ], "name": "login", "outputs": [ { "name": "", "type": "address" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_account", "type": "string" }, { "name": "_password", "type": "string" }, { "name": "_address", "type": "address" } ], "name": "register", "outputs": [ { "name": "", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "constant": true, "inputs": [ { "name": "", "type": "uint256" } ], "name": "userlist", "outputs": [ { "name": "account", "type": "string", "value": "ruru" }, { "name": "password", "type": "string", "value": "0513456" }, { "name": "useraddress", "type": "address", "value": "0x710023e720374318213eca9dc1ff9c21b92e056b" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "userno", "outputs": [ { "name": "", "type": "uint256", "value": "2" } ], "payable": false, "stateMutability": "view", "type": "function" } ]).at('0x68d35d0cA3866B2a4122A6755aD21936036f591F');
 		
 		 var username = document.getElementById('username').value;
 		 var password = document.getElementById('password').value;
-
 		 var useraddress = market0312Contract.login.call(username,password);
+		 var user_yn = market0312Contract.checkuser.call(username);	
+		 if(user_yn==true){	
+		    //帳號存在密碼輸錯
+		    if(useraddress == 0x0){
+			    alert("密碼錯誤，請再輸入一遍");
+			}
+			//成功登入
+			else{
+				localStorage.setItem('address', useraddress);
+				localStorage.setItem('username', username);
+				localStorage.setItem('password', password);
+				//window.location = "http://127.0.0.1:8000/login/test?" + transmit;
+			    location.href = "http://127.0.0.1:8000";
+			}
+		}
+		else if(user_yn==false){
+		    //帳號不存在
+			alert("帳號不存在或是輸入錯誤，請再輸入一遍或選擇註冊");					
+		}
 	}
     
   
@@ -49,7 +69,7 @@
     </div>
 
     <div>
-    <button  class="btn btn-warning btn btn-primary pull-right btn-sm " style="font-size: 25px" onclick="register()">Login!</button>
+    <button  class="btn btn-warning btn btn-primary pull-right btn-sm " style="font-size: 25px" onclick="Sign_in()">Login!</button>
     </div>
     
     <body>
